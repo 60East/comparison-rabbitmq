@@ -46,7 +46,7 @@ In between runs, we recommend shutting down RabbitMQ and clearing the storage di
 
 We ran our test using AMPS 5.0.0.0, downloaded from the 60East [evaluation page](http://www.crankuptheamps.com/evaluate) and unpacked into the home directory of the test user.
 
-* Downloaded the AMPS C++ Client version 5.0.0.0, available [here](http://devnull.crankuptheamps.com/releases/amps/clients/amps-c++-client-develop-Linux.tar.gz).
+* Downloaded the AMPS C++ Client version 5.0.0.0, available [here](http://devnull.crankuptheamps.com/releases/amps/clients/amps-c++-client-5.0.0.0-Linux.tar.gz).
 
 * Built the test in the amps directory. By default, the makefile for the test looks for the C client in the `clients/cpp` directory beneath the home directory of the current user. Otherwise you can set `AMPS_CLIENT` environment variable to the location of the AMPS client distribution.
 
@@ -60,6 +60,6 @@ We ran our test using AMPS 5.0.0.0, downloaded from the 60East [evaluation page]
 
   For example, `./runone.sh 1 1 200000 512`
 
-In between runs, we recommend shutting down AMPS and clearing the storage directory.
+In between runs, the script shuts down AMPS. We recommend clearing the storage directory.
 
 
