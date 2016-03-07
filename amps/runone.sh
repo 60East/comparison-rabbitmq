@@ -17,7 +17,7 @@ killall -9 ampServer >/dev/null
 rm -f amps.log
 sleep 5
 rm -rf $STORAGE_DIR/*
-(~/ampServer ./config.xml  >/dev/null &)
+(${AMPS_DIR}/bin/ampServer ./config.xml  >/dev/null &)
 ./wait-for-admin 8085 >/dev/null
 
 for i in $(seq 1 $PUBS)
