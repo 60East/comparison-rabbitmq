@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Sample AMPS configuration
+
+     This file defines an AMPS instance that provides publish and
+     subscribe, topic filtering, and content filtering for JSON messages.
+     The instance provides messaging services on port 9007 of the server.
+     This configuration also provides an adminstrative interface on
+     port 8085, and logs serious messages (error and higher severity) to
+     stdout. 
+
+     This sample file does not configure State of the World (SOW) Topics,
+     Transaction Logs, Aggregation and Views, Historical Query, Replication,
+     Authentication and Entitlement, Conflating Topic Replicas, or other
+     features of AMPS.
+
+     More details for the featuers available and how to configure them are
+     provided in the AMPS User Guide and the AMPS Configuration Reference.
+     Both are available at http://crankuptheamps.com/documentation/
+
+  -->
+
+<AMPSConfig>
+
+  <!-- Name of the AMPS instance -->
+
+  <Name>AMPS-Sample</Name>
+
+  <!-- Configure the administrative HTTP server on port 8085
+
+       This HTTP server provides admin functions and statistics
+       for the instance
+   -->
+
+  <Admin>
+    <InetAddr>localhost:10202</InetAddr>
+  </Admin>
+
+  <!-- Configure a transport for JSON messages over TCP on port 9007
+    -->
+
+  <Transports>
+    <Transport>
+      <Name>json-tcp</Name>
+      <Type>tcp</Type>
+      <InetAddr>9007</InetAddr>
+      <MessageType>json</MessageType>
+      <Protocol>amps</Protocol>
+    </Transport>
+  </Transports>
+
+ <!-- Log messages of severity 'error' and higher to stdout -->
+
+  <Logging>
+    <Target>
+      <Protocol>file</Protocol>
+      <Level>debug</Level>
+      <FileName>./amps.log</FileName>
+      <IncludeErrors>00-0000</IncludeErrors>
+    </Target>
+  </Logging>
+
+
+  <SOW>
+    <QueueDefinition>
+      <Topic>queue</Topic>
+      <MessageType>json</MessageType>
+      <MaxPerSubscriptionBacklog>100</MaxPerSubscriptionBacklog>
+    </QueueDefinition>
+  </SOW>
+  <TransactionLog>
+    <JournalDirectory>${STORAGE_DIR}</JournalDirectory>
+    <MinJournalSize>100MB</MinJournalSize>
+    <Topic>
+      <Name>queue</Name>
+      <MessageType>json</MessageType>
+    </Topic>
+  </TransactionLog>
+
+</AMPSConfig>
+

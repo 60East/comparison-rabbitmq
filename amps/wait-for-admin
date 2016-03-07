@@ -1,0 +1,14 @@
+#!/bin/bash
+
+wget -qO - localhost:10202 > /dev/null
+result="$?"
+
+while [ $result -ne "0" ]
+do
+  echo "Waiting on admin..."
+  sleep 1
+  wget --no-proxy -qO - localhost:10202 --timeout=1 > /dev/null
+  result=$?
+done
+
+
